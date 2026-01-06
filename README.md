@@ -57,6 +57,10 @@ Blocks until answered. Returns plain text answer.
 | 409 | Already answered |
 | 503 | Server unavailable |
 
+## Agent Skill
+
+See `skills/afk.md` for a Claude Code / Codex skill that teaches agents to use Pingu when you're AFK.
+
 ## Design
 
 - Transient: no history, no persistence, in-memory only
