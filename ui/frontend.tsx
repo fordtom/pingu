@@ -58,7 +58,7 @@ function QuestionCard({
   return (
     <div className="question-card">
       <div className="question-meta">
-        <span className="question-cwd">{question.cwd}</span>
+        <span className="question-cwd">{question.cwd.split("/").pop() || question.cwd}</span>
         <span className="question-time">{relativeTime}</span>
       </div>
       <div className="question-text">{question.text}</div>
