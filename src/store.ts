@@ -91,10 +91,6 @@ export class QuestionStore {
     }
     this.questions.clear();
   }
-
-  get size(): number {
-    return this.questions.size;
-  }
 }
 
 export const store = new QuestionStore();

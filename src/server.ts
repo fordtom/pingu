@@ -9,9 +9,7 @@ import {
 } from "./types";
 import index from "../ui/index.html";
 
-type WebSocketData = { connectedAt: number };
-
-const clients = new Set<import("bun").ServerWebSocket<WebSocketData>>();
+const clients = new Set<import("bun").ServerWebSocket>();
 
 function broadcast(message: ServerMessage) {
   const data = JSON.stringify(message);
@@ -77,10 +75,7 @@ export function createServer() {
     fetch(req, server) {
       const url = new URL(req.url);
       if (url.pathname === "/ws") {
-        const upgraded = server.upgrade(req, {
-          data: { connectedAt: Date.now() } satisfies WebSocketData,
-        });
-        if (upgraded) return;
+        if (server.upgrade(req)) return;
         return new Response("WebSocket upgrade failed", { status: 400 });
       }
       return new Response("Not found", { status: 404 });

@@ -5,15 +5,11 @@ const server = createServer();
 
 console.log(`Pingu listening on http://${config.host}:${config.port}`);
 
-process.on("SIGINT", () => {
-  console.log("\nShutting down...");
+const exit = () => {
   shutdown();
   server.stop();
   process.exit(0);
-});
+};
 
-process.on("SIGTERM", () => {
-  shutdown();
-  server.stop();
-  process.exit(0);
-});
+process.on("SIGINT", exit);
+process.on("SIGTERM", exit);
