@@ -34,7 +34,7 @@ function QuestionCard({
 }) {
   const [answer, setAnswer] = useState("");
   const [relativeTime, setRelativeTime] = useState(() => formatRelativeTime(question.createdAt));
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -63,13 +63,23 @@ function QuestionCard({
       </div>
       <div className="question-text">{question.text}</div>
       <form onSubmit={handleSubmit} className="answer-form">
-        <input
+        <textarea
           ref={inputRef}
-          type="text"
           value={answer}
-          onChange={(e) => setAnswer(e.target.value)}
+          onChange={(e) => {
+            setAnswer(e.target.value);
+            e.target.style.height = "auto";
+            e.target.style.height = e.target.scrollHeight + "px";
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              handleSubmit(e);
+            }
+          }}
           placeholder="Type your answer..."
           className="answer-input"
+          rows={1}
         />
         <button type="submit" className="answer-button">
           Reply
