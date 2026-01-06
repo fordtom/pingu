@@ -57,9 +57,9 @@ Blocks until answered. Returns plain text answer.
 | 409 | Already answered |
 | 503 | Server unavailable |
 
-## Agent Skill
+## Slash Command
 
-See `skills/afk.md` for a Claude Code / Codex skill that teaches agents to use Pingu when you're AFK.
+See `afk.md` for a Claude Code slash command. Copy to `~/.claude/commands/afk.md` then invoke with `/afk` when starting a task you'll leave unattended.
 
 ## Design
 
