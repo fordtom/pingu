@@ -92,10 +92,6 @@ body {
 
 .question-cwd {
   font-family: ui-monospace, monospace;
-  max-width: 70%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 .question-text {
