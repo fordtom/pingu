@@ -9,6 +9,6 @@ export const config = {
     return process.env.PINGU_HOST ?? "0.0.0.0";
   },
   get ntfyUrl() {
-    return process.env.PINGU_NTFY_URL ?? "http://localhost:9000/pingu";
+    return process.env.NTFY_URL ?? "http://localhost:8080/pingu";
   },
 };

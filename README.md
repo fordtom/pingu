@@ -37,7 +37,7 @@ Subscribe on your phone via ntfy app to get notified when questions need answers
 |---------|---------|-------------|
 | `PINGU_PORT` | 8000 | Server port |
 | `PINGU_TIMEOUT_MS` | 3600000 | Question timeout (1 hour) |
-| `PINGU_NTFY_URL` | http://localhost:9000/pingu | ntfy endpoint |
+| `NTFY_URL` | http://localhost:8080/pingu | ntfy endpoint (full URL with topic) |
 | `PINGU_URL` | http://localhost:8000 | CLI server URL |
 
 ## API
