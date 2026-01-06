@@ -51,6 +51,13 @@ export class QuestionStore {
     this.questions.set(id, question);
     this.onQuestionAdded?.({ id, text: data.text, cwd: data.cwd, createdAt });
 
+    // Notify via ntfy (fire and forget)
+    const dirName = data.cwd.split("/").pop() || data.cwd;
+    fetch(config.ntfyUrl, {
+      method: "POST",
+      body: `[${dirName}] ${data.text}`,
+    }).catch(() => {}); // ignore errors
+
     return { id, promise };
   }
 

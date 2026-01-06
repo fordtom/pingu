@@ -11,7 +11,7 @@ bun install
 bun run start
 ```
 
-Open http://localhost:3000 for the human UI.
+Server runs on http://localhost:8000. Open in browser for the human UI.
 
 ## CLI
 
@@ -21,25 +21,45 @@ Open http://localhost:3000 for the human UI.
 
 Blocks until answered or timeout (1 hour default). Returns answer text on stdout, non-zero exit on timeout/error.
 
+Requires `curl` and `jq`. Set `PINGU_URL` to point to your server if not localhost.
+
+## Notifications
+
+When a question arrives, Pingu pushes to ntfy (default: `http://localhost:9000/pingu`).
+
+Message format: `[dirname] question text`
+
+Subscribe on your phone via ntfy app to get notified when questions need answers.
+
 ## Config
 
 | Env Var | Default | Description |
 |---------|---------|-------------|
-| `PINGU_PORT` | 3000 | Server port |
+| `PINGU_PORT` | 8000 | Server port |
 | `PINGU_TIMEOUT_MS` | 3600000 | Question timeout (1 hour) |
-| `PINGU_URL` | http://localhost:3000 | CLI server URL |
+| `PINGU_NTFY_URL` | http://localhost:9000/pingu | ntfy endpoint |
+| `PINGU_URL` | http://localhost:8000 | CLI server URL |
 
 ## API
 
 **POST /ask**
 ```json
-{"text": "Deploy now?", "cwd": "/project"}
+{"text": "Deploy now?", "cwd": "/home/user/project"}
 ```
 
-Returns plain text answer. Status codes: 200 (answered), 504 (timeout), 410 (expired), 409 (conflict), 503 (unavailable).
+Blocks until answered. Returns plain text answer.
+
+| Status | Meaning |
+|--------|---------|
+| 200 | Answered (body = answer text) |
+| 504 | Timed out |
+| 410 | Question expired/not found |
+| 409 | Already answered |
+| 503 | Server unavailable |
 
 ## Design
 
 - Transient: no history, no persistence, in-memory only
 - Single question → single answer
 - First answer wins, late answers rejected
+- WebSocket for real-time UI updates (overkill but works)

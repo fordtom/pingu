@@ -2,12 +2,12 @@ import { test, expect, beforeAll, afterAll, describe } from "bun:test";
 
 // Use short timeout for tests
 process.env.PINGU_TIMEOUT_MS = "500";
-process.env.PINGU_PORT = "3001";
+process.env.PINGU_PORT = "8001";
 
 import { createServer, shutdown } from "./src/server";
 
 let server: ReturnType<typeof createServer>;
-const baseUrl = "http://localhost:3001";
+const baseUrl = "http://localhost:8001";
 
 beforeAll(() => {
   server = createServer();
@@ -20,7 +20,7 @@ afterAll(() => {
 
 describe("POST /ask", () => {
   test("happy path: question answered via WebSocket returns 200", async () => {
-    const ws = new WebSocket(`ws://localhost:3001/ws`);
+    const ws = new WebSocket(`ws://localhost:8001/ws`);
     await new Promise<void>((resolve) => {
       ws.onopen = () => resolve();
     });
@@ -67,7 +67,7 @@ describe("POST /ask", () => {
   });
 
   test("answering non-existent question returns not_found", async () => {
-    const ws = new WebSocket(`ws://localhost:3001/ws`);
+    const ws = new WebSocket(`ws://localhost:8001/ws`);
     await new Promise<void>((resolve) => {
       ws.onopen = () => resolve();
     });
@@ -125,7 +125,7 @@ describe("POST /ask", () => {
 
 describe("WebSocket", () => {
   test("receives sync on connect", async () => {
-    const ws = new WebSocket(`ws://localhost:3001/ws`);
+    const ws = new WebSocket(`ws://localhost:8001/ws`);
     await new Promise<void>((resolve) => {
       ws.onopen = () => resolve();
     });
@@ -143,7 +143,7 @@ describe("WebSocket", () => {
   });
 
   test("multiple concurrent questions are isolated", async () => {
-    const ws = new WebSocket(`ws://localhost:3001/ws`);
+    const ws = new WebSocket(`ws://localhost:8001/ws`);
     await new Promise<void>((resolve) => {
       ws.onopen = () => resolve();
     });

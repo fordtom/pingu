@@ -8,7 +8,7 @@ fi
 
 TEXT="$1"
 CWD="$(pwd)"
-PINGU_URL="${PINGU_URL:-http://localhost:3000}"
+PINGU_URL="${PINGU_URL:-http://localhost:8000}"
 
 response=$(curl -s -w "\n%{http_code}" \
   -X POST \
