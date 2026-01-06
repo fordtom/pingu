@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background: #0a0a0a;
+  color: #e5e5e5;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #262626;
+}
+
+.header h1 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.status {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.status.connected {
+  background: #052e16;
+  color: #4ade80;
+}
+
+.status.disconnected {
+  background: #450a0a;
+  color: #f87171;
+}
+
+.error {
+  background: #450a0a;
+  color: #f87171;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+.empty {
+  text-align: center;
+  color: #737373;
+  padding: 48px 0;
+}
+
+.questions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.question-card {
+  background: #171717;
+  border: 1px solid #262626;
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.question-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #737373;
+  margin-bottom: 8px;
+}
+
+.question-cwd {
+  font-family: ui-monospace, monospace;
+  max-width: 70%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.question-text {
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  white-space: pre-wrap;
+}
+
+.answer-form {
+  display: flex;
+  gap: 8px;
+}
+
+.answer-input {
+  flex: 1;
+  background: #0a0a0a;
+  border: 1px solid #262626;
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: #e5e5e5;
+  font-size: 14px;
+}
+
+.answer-input:focus {
+  outline: none;
+  border-color: #525252;
+}
+
+.answer-input::placeholder {
+  color: #525252;
+}
+
+.answer-button {
+  background: #e5e5e5;
+  color: #0a0a0a;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.answer-button:hover {
+  background: #ffffff;
+}
+
+.answer-button:active {
+  background: #d4d4d4;
+}
