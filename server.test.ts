@@ -3,6 +3,7 @@ import { test, expect, beforeAll, afterAll, describe } from "bun:test";
 // Use short timeout for tests
 process.env.PINGU_TIMEOUT_MS = "500";
 process.env.PINGU_PORT = "8001";
+process.env.PINGU_TLS = "0";
 
 import { createServer, shutdown } from "./src/server";
 

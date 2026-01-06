@@ -3,7 +3,8 @@ import { config } from "./src/config";
 
 const server = createServer();
 
-console.log(`Pingu listening on http://${config.host}:${config.port}`);
+const protocol = config.tlsEnabled ? "https" : "http";
+console.log(`Pingu listening on ${protocol}://${config.host}:${config.port}`);
 
 const exit = () => {
   shutdown();

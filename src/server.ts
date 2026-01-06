@@ -63,6 +63,12 @@ export function createServer() {
   return Bun.serve({
     port: config.port,
     hostname: config.host,
+    tls: config.tlsEnabled
+      ? {
+          key: Bun.file(config.tlsKeyPath),
+          cert: Bun.file(config.tlsCertPath),
+        }
+      : undefined,
 
     routes: {
       "/": index,
